@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var notificationManager: NotificationManager
     private lateinit var pendingIntent: PendingIntent
     private lateinit var action: NotificationCompat.Action
+    private lateinit var nothingSelectedText: String
     lateinit var downloadManager: DownloadManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+        nothingSelectedText = getString(R.string.txt_notSelected);
 
         custom_button.setOnClickListener {
             checkSelectedRadioButton()
@@ -61,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showToastMessage() {
-        Toast.makeText(this, "text", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "$nothingSelectedText", Toast.LENGTH_LONG).show()
     }
 
     private val receiver = object : BroadcastReceiver() {
@@ -79,9 +81,12 @@ class MainActivity : AppCompatActivity() {
                     val downloadTitle =
                         cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_TITLE))
                     val isSuccess = status == DownloadManager.STATUS_SUCCESSFUL
-                    Toast.makeText(this@MainActivity, downloadTitle, Toast.LENGTH_LONG).show()
-                    //custom_button.downloadCompleted()
-                    NotificationHelper.createNotificationChannel(context, downloadTitle, isSuccess)
+                    NotificationHelper.createNotificationChannel(
+                        context,
+                        downloadTitle,
+                        isSuccess
+                    )
+
                 }
                 cursor.close()
 
@@ -91,8 +96,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun download(title: Int, url: String) {
-       Log.i("yarab","download")
         custom_button.downloadStart()
+
         val request =
             DownloadManager.Request(Uri.parse(url))
                 .setTitle(getString(title))
@@ -102,8 +107,8 @@ class MainActivity : AppCompatActivity() {
                 .setAllowedOverRoaming(true)
         downloadID =
             downloadManager.enqueue(request)// enqueue puts the download request in the queue.
-    }
 
+    }
 
     companion object {
         private const val URL =

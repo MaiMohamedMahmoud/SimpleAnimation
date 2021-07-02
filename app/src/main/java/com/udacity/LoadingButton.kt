@@ -21,6 +21,7 @@ class LoadingButton @JvmOverloads constructor(
     private var circleColor = 0
     private var progress = 0
     private var displayedText = resources.getString(R.string.download);
+    private var downloadDisplayText = resources.getString(R.string.download);
     private var loadingDisplayedText = resources.getString(R.string.button_loading);
 
     private var buttonTextColor = Color.WHITE
@@ -53,10 +54,11 @@ class LoadingButton @JvmOverloads constructor(
                     doOnEnd {
                         progress = 0
                         isEnabled = true
-                        displayedText = displayedText
+                        displayedText = downloadDisplayText
                     }
                     start()
                 }
+
             }
             ButtonState.Clicked -> {
                 buttonState = ButtonState.Loading
@@ -64,10 +66,9 @@ class LoadingButton @JvmOverloads constructor(
             }
             ButtonState.Completed -> {
                 isEnabled = true
-                displayedText = displayedText
+                displayedText = downloadDisplayText
             }
         }
-        Log.i("yarab", "invalidate")
         invalidate()
     }
 
@@ -96,13 +97,11 @@ class LoadingButton @JvmOverloads constructor(
         val rectArea = Rect()
         paint.color = buttonBackgroundColor
         canvas.drawRect(0f, 0f, widthSize.toFloat(), heightSize.toFloat(), paint)
-        Log.i("yarab", "inside draw")
         // draw download progress
         if (buttonState == ButtonState.Loading) {
             paint.color = buttonDownloadingBackgroundColor
             val progressRect = progress / 1000f * widthSize
             canvas.drawRect(0f, 0f, progressRect, heightSize.toFloat(), paint)
-            Log.i("yarab", "inside if draw")
             val sweepAngle = progress / 1000f * 360f
             paint.color = circleColor
             canvas.drawArc(progressArc, 0f, sweepAngle, true, paint)
@@ -131,20 +130,11 @@ class LoadingButton @JvmOverloads constructor(
             widthSize.toFloat() - 200f,
             heightSize / 2 + 25f
         )
-
     }
 
 
     fun downloadStart() {
         buttonState = ButtonState.Loading
-    }
-
-    fun downloadCompleted() {
-        val fraction = valueAnimator.animatedFraction
-        valueAnimator.cancel()
-        valueAnimator.setCurrentFraction(fraction + 0.1f)
-        valueAnimator.duration = 1000
-        valueAnimator.start()
     }
 
 }

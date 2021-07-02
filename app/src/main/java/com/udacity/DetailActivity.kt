@@ -17,20 +17,17 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
-        val aniFade: Animation = AnimationUtils.loadAnimation(this, R.anim.fadein)
         if (intent.hasExtra(SUCCESS))
             if (intent.getBooleanExtra(SUCCESS, false)) {
                 status.text = getString(R.string.success)
                 status.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
-                status.visibility = View.VISIBLE
-                status.startAnimation(aniFade)
+
             } else {
                 status.text = getString(R.string.fail)
                 status.setTextColor(ContextCompat.getColor(this, R.color.Red))
             }
         if (intent.hasExtra(TITLE)) {
             name.visibility = View.VISIBLE
-            name.startAnimation(aniFade)
             name.text = intent.getStringExtra(TITLE)
         }
 
