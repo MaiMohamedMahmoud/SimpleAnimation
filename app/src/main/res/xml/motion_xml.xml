@@ -3,11 +3,10 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
+        motion:autoTransition="animateToEnd"
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@+id/start"
-        motion:duration="5000"
-        motion:autoTransition="animateToEnd">
-    </Transition>
+        motion:duration="5000"></Transition>
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
@@ -16,44 +15,65 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fab_margin"
             android:layout_marginTop="@dimen/fab_margin"
+            android:alpha="0.0"
             android:text="@string/name"
             android:textSize="@dimen/default_text_size"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="parent"
-            android:alpha="0.0"/>
+            motion:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fab_margin"
+            android:alpha="0.0"
             android:textSize="@dimen/default_text_size"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintHorizontal_bias="0.533"
             motion:layout_constraintStart_toEndOf="@+id/txt_name"
-            motion:layout_constraintTop_toTopOf="@+id/txt_name"
-            android:alpha="0.0"/>
+            motion:layout_constraintTop_toTopOf="@+id/txt_name" />
 
         <Constraint
             android:id="@+id/txt_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fab_margin"
+            android:alpha="0.0"
             android:text="@string/status"
             android:textSize="@dimen/default_text_size"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/name"
-            android:alpha="0.0"/>
+            motion:layout_constraintTop_toBottomOf="@+id/name" />
 
 
         <Constraint
             android:id="@+id/status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:alpha="0.0"
             android:textSize="@dimen/default_text_size"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="@+id/name"
-            motion:layout_constraintTop_toTopOf="@+id/txt_status"
+            motion:layout_constraintTop_toTopOf="@+id/txt_status" />
+
+        <Constraint
+            android:id="@+id/txt_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:alpha="0.0"
+            android:text="@string/status"
+            android:textSize="@dimen/default_text_size"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/status"/>
+
+        <Constraint
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@+id/name"
+            motion:layout_constraintTop_toTopOf="@+id/txt_description"
             android:alpha="0.0"/>
 
         <Constraint
@@ -61,13 +81,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="@string/ok"
+            android:alpha="0.0"
             android:background="@color/colorAccent"
+            android:text="@string/ok"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintHorizontal_bias="0.498"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:alpha="0.0"/>
+            motion:layout_constraintStart_toStartOf="parent" />
 
     </ConstraintSet>
 
@@ -78,57 +98,76 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fab_margin"
             android:layout_marginTop="@dimen/fab_margin"
+            android:alpha="1.0"
             android:text="@string/name"
             android:textSize="@dimen/default_text_size"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="parent"
-            android:alpha="1.0"/>
+            motion:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fab_margin"
+            android:alpha="1.0"
             android:textSize="@dimen/default_text_size"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintHorizontal_bias="0.533"
             motion:layout_constraintStart_toEndOf="@+id/txt_name"
-            motion:layout_constraintTop_toTopOf="@+id/txt_name"
-            android:alpha="1.0"/>
+            motion:layout_constraintTop_toTopOf="@+id/txt_name" />
 
         <Constraint
             android:id="@+id/txt_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fab_margin"
+            android:alpha="1.0"
             android:text="@string/status"
             android:textSize="@dimen/default_text_size"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/name"
-            android:alpha="1.0"/>
+            motion:layout_constraintTop_toBottomOf="@+id/name" />
 
         <Constraint
             android:id="@+id/status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:alpha="1.0"
             android:textSize="@dimen/default_text_size"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="@+id/name"
-            motion:layout_constraintTop_toTopOf="@+id/txt_status"
-            android:alpha="1.0"/>
+            motion:layout_constraintTop_toTopOf="@+id/txt_status" />
 
+        <Constraint
+            android:id="@+id/txt_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:alpha="1.0"
+            android:text="@string/status"
+            android:textSize="@dimen/default_text_size"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/status"/>
+
+        <Constraint
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            motion:layout_constraintStart_toStartOf="@+id/name"
+            motion:layout_constraintTop_toTopOf="@+id/txt_description"
+            android:alpha="1.0" />
         <Constraint
             android:id="@+id/btn_back"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="@string/ok"
+            android:alpha="1.0"
             android:background="@color/colorAccent"
+            android:text="@string/ok"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintHorizontal_bias="0.498"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:alpha="1.0"/>
+            motion:layout_constraintStart_toStartOf="parent" />
     </ConstraintSet>
 
 </MotionScene>

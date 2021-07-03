@@ -6,6 +6,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.udacity.MainActivity.Companion.DESCRIPTION
 import com.udacity.MainActivity.Companion.SUCCESS
 import com.udacity.MainActivity.Companion.TITLE
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -29,6 +30,10 @@ class DetailActivity : AppCompatActivity() {
         if (intent.hasExtra(TITLE)) {
             name.visibility = View.VISIBLE
             name.text = intent.getStringExtra(TITLE)
+        }
+
+        if (intent.hasExtra(DESCRIPTION)) {
+            description.text = intent.getStringExtra(DESCRIPTION)
         }
 
         btn_back.setOnClickListener {

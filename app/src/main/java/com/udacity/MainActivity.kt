@@ -80,11 +80,15 @@ class MainActivity : AppCompatActivity() {
                         cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
                     val downloadTitle =
                         cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_TITLE))
+                    val downloadDescription =
+                        cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_DESCRIPTION))
+
                     val isSuccess = status == DownloadManager.STATUS_SUCCESSFUL
+                    Toast.makeText(this@MainActivity, downloadTitle, Toast.LENGTH_LONG).show()
                     NotificationHelper.createNotificationChannel(
                         context,
                         downloadTitle,
-                        isSuccess
+                        isSuccess, downloadDescription
                     )
 
                 }
@@ -96,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun download(title: Int, url: String) {
-        custom_button.downloadStart()
+        custom_button.downloadStartLoading()
 
         val request =
             DownloadManager.Request(Uri.parse(url))
@@ -115,6 +119,7 @@ class MainActivity : AppCompatActivity() {
             "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
         const val TITLE = "TITLE"
         const val SUCCESS = "success"
+        const val DESCRIPTION = "description"
     }
 
 }

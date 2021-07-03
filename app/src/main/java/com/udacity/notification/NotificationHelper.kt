@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.udacity.DetailActivity
+import com.udacity.MainActivity.Companion.DESCRIPTION
 import com.udacity.MainActivity.Companion.SUCCESS
 import com.udacity.MainActivity.Companion.TITLE
 import com.udacity.R
@@ -48,12 +49,18 @@ object NotificationHelper {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
     }
 
-    fun createNotificationChannel(context: Context, title: String, isSuccess: Boolean) {
+    fun createNotificationChannel(
+        context: Context,
+        title: String,
+        isSuccess: Boolean,
+        description: String
+    ) {
         // Create the content intent for the notification, which launches
         // this activity
-        val contentIntent = Intent(context, DetailActivity::class.java)
-        contentIntent.putExtra(TITLE, title)
-        contentIntent.putExtra(SUCCESS, isSuccess)
+        val detailsIntent = Intent(context, DetailActivity::class.java)
+        detailsIntent.putExtra(TITLE, title)
+        detailsIntent.putExtra(SUCCESS, isSuccess)
+        detailsIntent.putExtra(DESCRIPTION,description)
 
         // 1
         val channelId = "${context.packageName}-${context.getString(R.string.app_name)}"
@@ -64,7 +71,7 @@ object NotificationHelper {
         val contentPendingIntent = PendingIntent.getActivity(
             context,
             requestCodeNotification,
-            contentIntent,
+            detailsIntent,
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 

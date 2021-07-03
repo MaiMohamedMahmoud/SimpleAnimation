@@ -132,9 +132,7 @@ class LoadingButton @JvmOverloads constructor(
         )
     }
 
-
-    fun downloadStart() {
+    fun downloadStartLoading() {
         buttonState = ButtonState.Loading
     }
-
 }
